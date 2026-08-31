@@ -1,11 +1,8 @@
 import type { NextConfig } from "next";
-import path from "path";
 
 const nextConfig: NextConfig = {
-  cacheComponents: true,
-  turbopack: {
-    root: path.resolve(__dirname, ".."),
-  },
+  // Disable Turbopack to use Webpack instead
+  turbopack: undefined,
   images: {
     remotePatterns: [
       {

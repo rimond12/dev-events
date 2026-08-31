@@ -6,6 +6,11 @@ import { cacheLife } from "next/cache";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
+/**
+ * Home page component - Displays featured events and hero section.
+ * Fetches events from API and renders them in a grid. Results are cached for one hour.
+ * @returns React component
+ */
 const Page = async () => {
 
     'use cache'

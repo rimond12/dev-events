@@ -1,3 +1,8 @@
+/**
+ * PostHog analytics initialization for client-side tracking.
+ * Configures PostHog with project token and host from environment variables.
+ * Throws error in development if required environment variables are missing.
+ */
 import posthog from "posthog-js";
 
 const projectToken = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN;

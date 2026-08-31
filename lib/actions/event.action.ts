@@ -4,6 +4,12 @@ import Event from "@/database/event.model";
 import connectDB from "../mongodb";
 import { cacheLife } from "next/cache";
 
+/**
+ * Retrieves events similar to the one with the given slug.
+ * Similarity is based on shared tags.
+ * @param slug - The slug of the event to find similar events for
+ * @returns Array of similar events (serialized for client components), or empty array on error
+ */
 export const getSimilarEventsBySlug = async (slug: string) => {
     try {
         await connectDB();
@@ -20,6 +26,11 @@ export const getSimilarEventsBySlug = async (slug: string) => {
     }
 }
 
+/**
+ * Retrieves all events from the database, sorted by creation date (newest first).
+ * Results are cached for one hour.
+ * @returns Array of all events (serialized for client components), or empty array on error
+ */
 export const getAllEvents = async () => {
     'use cache'
     cacheLife('hours')

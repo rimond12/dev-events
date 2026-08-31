@@ -8,6 +8,11 @@ import { notFound } from "next/navigation";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
+/**
+ * Displays a single detail item (icon + label) for event information.
+ * @param props - Icon path, alt text, and label text
+ * @returns React component
+ */
 const EventDetailItem = ({ icon, alt, label }: { icon: string; alt: string; label: string }) => (
     <div className="flex-row-gap-2 items-center">
         <Image src={icon} alt={alt} width={20} height={20} />
@@ -15,6 +20,11 @@ const EventDetailItem = ({ icon, alt, label }: { icon: string; alt: string; labe
     </div>
 )
 
+/**
+ * Displays the event agenda as a list of items.
+ * @param props - Object containing array of agenda items
+ * @returns React component
+ */
 const EventAgenda = ({ agendaItems }: { agendaItems: string[] }) => (
     <section className="agenda flex-col gap-2 mt-4">
         <h2>Event Agenda</h2>
@@ -26,6 +36,11 @@ const EventAgenda = ({ agendaItems }: { agendaItems: string[] }) => (
     </section>
 )
 
+/**
+ * Displays event tags as styled pills/badges.
+ * @param props - Object containing array of tag strings
+ * @returns React component
+ */
 const EventTags = ({ tags }: { tags: string[] }) => (
     <div>
         <h2>Tags</h2>
@@ -37,6 +52,12 @@ const EventTags = ({ tags }: { tags: string[] }) => (
     </div>
 )
 
+/**
+ * Event details page - Displays comprehensive information about a single event.
+ * Shows event description, overview, details, agenda, organizer info, booking form, and similar events.
+ * @param props - Object containing params promise with event slug
+ * @returns React component
+ */
 const EventsDetailsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
     const { slug } = await params;

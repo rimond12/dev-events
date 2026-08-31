@@ -22,6 +22,12 @@ export const metadata: Metadata = {
   description: "The Hub for Every Dev Event You Mustn't Miss",
 };
 
+/**
+ * Root layout component - Wraps all pages with common layout structure.
+ * Includes navigation, light rays background effect, and font configurations.
+ * @param props - Object containing children elements to render
+ * @returns React component
+ */
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html

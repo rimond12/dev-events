@@ -3,6 +3,12 @@
 import { useEffect } from "react";
 import posthog from "posthog-js";
 
+/**
+ * Global error handler component - Displays error UI when unhandled errors occur.
+ * Captures errors in PostHog for monitoring and provides a reset action.
+ * @param props - Error object and reset function
+ * @returns React component
+ */
 export default function GlobalError({
   error,
   reset,

@@ -3,6 +3,11 @@
 import Image from "next/image";
 import posthog from "posthog-js";
 
+/**
+ * ExploreBtn component - Button that scrolls to the events section.
+ * Tracks user interaction via PostHog analytics.
+ * @returns React component
+ */
 const ExploreBtn = () => {
     const handleExplore = () => {
         posthog.capture("events_explored");

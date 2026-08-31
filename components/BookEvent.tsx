@@ -2,6 +2,11 @@
 
 import { useState } from "react";
 
+/**
+ * BookEvent component - Displays a form for users to book/register for an event.
+ * Shows a thank you message after submission.
+ * @returns React component
+ */
 const BookEvent = () => {
 
     const [email, setEmail] = useState('');

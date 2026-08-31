@@ -10,8 +10,13 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-
-
+/**
+ * POST /api/events
+ * Creates a new event with image upload to Cloudinary.
+ * Accepts FormData with event details and an image file.
+ * @param req - The Next.js request object containing FormData
+ * @returns JSON response with created event or error message
+ */
 export async function POST(req: NextRequest) {
     // DEBUG: remove after fixing
     console.log('[Cloudinary Config]', {
@@ -69,6 +74,11 @@ export async function POST(req: NextRequest) {
     }
 }
 
+/**
+ * GET /api/events
+ * Retrieves all events from the database, sorted by creation date (newest first).
+ * @returns JSON response with array of events or error message
+ */
 export async function GET() {
     try {
         await connectDB();

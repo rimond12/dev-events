@@ -13,6 +13,12 @@ interface Props {
     time: string;
 }
 
+/**
+ * EventCard component - Displays a summary card for an event.
+ * Shows event image, title, location, date, and time. Tracks event selection analytics.
+ * @param props - Event details including title, image, slug, location, date, and time
+ * @returns React component
+ */
 const EventCard = ({title, image, slug, location, time, date}: Props) => {
     const handleEventSelection = () => {
         posthog.capture("event_selected", { event_slug: slug });
