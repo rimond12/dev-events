@@ -175,7 +175,7 @@
         @apply flex flex-col gap-3;
 
         .poster {
-            @apply h-[300px] w-full rounded-lg object-cover;
+            @apply !h-auto w-full rounded-lg object-cover;
         }
 
         .title {
@@ -207,7 +207,7 @@
                 @apply flex flex-[2] flex-col gap-8 max-lg:w-full;
 
                 .banner {
-                    @apply max-h-[457px] w-full rounded-lg object-cover;
+                    @apply max-h-[457px] !h-auto w-full rounded-lg object-cover;
                 }
 
                 .agenda {

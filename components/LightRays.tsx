@@ -32,6 +32,11 @@ interface LightRaysProps {
 
 const DEFAULT_COLOR = "#ffffff";
 
+/**
+ * Converts a hex color string to RGB values normalized to 0-1 range.
+ * @param hex - Hex color string (e.g., "#ffffff")
+ * @returns Tuple of RGB values [r, g, b] where each value is 0-1
+ */
 const hexToRgb = (hex: string): [number, number, number] => {
     const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return m
@@ -43,6 +48,13 @@ const hexToRgb = (hex: string): [number, number, number] => {
         : [1, 1, 1];
 };
 
+/**
+ * Calculates the anchor point and direction for light rays based on origin setting.
+ * @param origin - The origin position for the light rays
+ * @param w - Canvas width
+ * @param h - Canvas height
+ * @returns Object with anchor position and direction vector
+ */
 const getAnchorAndDir = (
     origin: RaysOrigin,
     w: number,
@@ -71,6 +83,12 @@ const getAnchorAndDir = (
     }
 };
 
+/**
+ * LightRays component - Renders animated WebGL light rays effect.
+ * Creates dynamic light rays that can follow mouse movement and be customized in various ways.
+ * @param props - Configuration options for the light rays effect
+ * @returns React component
+ */
 const LightRays: React.FC<LightRaysProps> = ({
                                                  raysOrigin = "top-center",
                                                  raysColor = DEFAULT_COLOR,

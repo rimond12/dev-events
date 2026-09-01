@@ -1,6 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
+/**
+ * Navbar component - Main navigation header with logo and navigation links.
+ * @returns React component
+ */
 const Navbar = () => {
     return (
         <header>

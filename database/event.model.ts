@@ -109,7 +109,10 @@ const EventSchema = new Schema<IEvent>(
   }
 );
 
-// Pre-save hook for slug generation and data normalization
+/**
+ * Pre-save hook for slug generation and data normalization.
+ * Generates URL-friendly slug from title and normalizes date/time formats.
+ */
 EventSchema.pre('save', function () {
   const event = this as IEvent;
 
@@ -129,7 +132,12 @@ EventSchema.pre('save', function () {
   }
 });
 
-// Helper function to generate URL-friendly slug
+/**
+ * Generates a URL-friendly slug from a title string.
+ * Converts to lowercase, removes special characters, and replaces spaces with hyphens.
+ * @param title - The event title to convert
+ * @returns URL-friendly slug string
+ */
 function generateSlug(title: string): string {
   return title
     .toLowerCase()
@@ -140,7 +148,12 @@ function generateSlug(title: string): string {
     .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
 }
 
-// Helper function to normalize date to ISO format
+/**
+ * Normalizes a date string to ISO format (YYYY-MM-DD).
+ * @param dateString - The date string to normalize
+ * @returns ISO formatted date string (YYYY-MM-DD)
+ * @throws {Error} If the date format is invalid
+ */
 function normalizeDate(dateString: string): string {
   const date = new Date(dateString);
   if (isNaN(date.getTime())) {
@@ -149,7 +162,13 @@ function normalizeDate(dateString: string): string {
   return date.toISOString().split('T')[0]; // Return YYYY-MM-DD format
 }
 
-// Helper function to normalize time format
+/**
+ * Normalizes time format to 24-hour HH:MM format.
+ * Accepts both 12-hour (with AM/PM) and 24-hour formats.
+ * @param timeString - The time string to normalize (e.g., "2:30 PM" or "14:30")
+ * @returns Normalized time string in 24-hour format (HH:MM)
+ * @throws {Error} If the time format is invalid or values are out of range
+ */
 function normalizeTime(timeString: string): string {
   // Handle various time formats and convert to HH:MM (24-hour format)
   const timeRegex = /^(\d{1,2}):(\d{2})(\s*(AM|PM))?$/i;

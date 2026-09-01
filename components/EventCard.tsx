@@ -13,6 +13,12 @@ interface Props {
     time: string;
 }
 
+/**
+ * EventCard component - Displays a summary card for an event.
+ * Shows event image, title, location, date, and time. Tracks event selection analytics.
+ * @param props - Event details including title, image, slug, location, date, and time
+ * @returns React component
+ */
 const EventCard = ({title, image, slug, location, time, date}: Props) => {
     const handleEventSelection = () => {
         posthog.capture("event_selected", { event_slug: slug });
@@ -22,18 +28,18 @@ const EventCard = ({title, image, slug, location, time, date}: Props) => {
         <Link href={`/events/${slug}`} id="event-card" onClick={handleEventSelection}>
             <Image src={image} alt={title} width={140} height={300} className="poster"/>
             <div className="flex flex-row gap-2">
-                <Image src="/icons/pin.svg" alt="location" width={14} height={14}/>
+                <Image src="/icons/pin.svg" alt="location" width={14} height={14} style={{ height: 'auto' }} />
                 <p>{location}</p>
             </div>
             <p className="tittle">{title}</p>
 
             <div className="datetime">
                 <div>
-                    <Image src="/icons/calendar.svg" alt="date" width={14} height={14}/>
+                    <Image src="/icons/calendar.svg" alt="date" width={14} height={14} style={{ height: 'auto' }} />
                     <p>{date}</p>
                 </div>
                 <div>
-                    <Image src="/icons/clock.svg" alt="time" width={14} height={14}/>
+                    <Image src="/icons/clock.svg" alt="time" width={14} height={14} style={{ height: 'auto' }} />
                     <p>{time}</p>
                 </div>
             </div>
