@@ -1,5 +1,7 @@
 'use client';
 
+import { createBooking } from "@/lib/actions/booking.actions";
+import posthog from "posthog-js";
 import { useState } from "react";
 
 /**
@@ -7,18 +9,35 @@ import { useState } from "react";
  * Shows a thank you message after submission.
  * @returns React component
  */
-const BookEvent = () => {
+const BookEvent = ({ eventId, slug }: { eventId: string, slug: string }) => {
 
     const [email, setEmail] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        setTimeout(() => {
+        const { success, error } = await createBooking({ eventId, email });
+
+        if (success) {
             setSubmitted(true);
-        }, 1000);
+            posthog.capture("Booking Created", {
+                event_id: eventId,
+                event_slug: slug,
+                email
+            })
+
+        } else {
+            console.log(error);
+            posthog.capture("Booking Failed", {
+                event_id: eventId,
+                event_slug: slug,
+                email,
+                error
+            })
+        }
+
     }
 
     return (

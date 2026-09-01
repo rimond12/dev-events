@@ -43,3 +43,22 @@ export const getAllEvents = async () => {
         return [];
     }
 }
+
+/**
+ * Retrieves a single event by its slug.
+ * Results are cached for one hour.
+ * @param slug - The event slug to look up
+ * @returns The event object (serialized) or null on error
+ */
+export const getEventBySlug = async (slug: string) => {
+    'use cache'
+    cacheLife('hours')
+
+    try {
+        await connectDB();
+        const event = await Event.findOne({ slug }).lean();
+        return JSON.parse(JSON.stringify(event));
+    } catch (e) {
+        return null;
+    }
+}
